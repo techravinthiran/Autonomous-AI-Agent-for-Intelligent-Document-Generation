@@ -1,4 +1,4 @@
-# Autonomous AI Agent
+# Autonomous AI Agent for Intelligent Document Generation
 
 ## Overview
 
@@ -111,6 +111,22 @@ Or using Python directly:
 python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
+### 4. (Optional) Start the Streamlit Frontend
+
+For a user-friendly web interface, start the Streamlit app in a separate terminal:
+```bash
+streamlit run streamlit_app.py
+```
+
+**Note:** Both the FastAPI server (port 8000) and Streamlit (port 8501) must run simultaneously for the frontend to work.
+
+The Streamlit UI provides:
+- Easy-to-use form for entering requests
+- Real-time task progress display with expandable details
+- Document download button
+- Visual feedback and error handling
+- Metrics showing document type and completion status
+
 ---
 
 ## API
@@ -157,6 +173,7 @@ This request is deliberately vague – the agent will state its assumptions (boa
 | Component | Technology | Reason |
 |-----------|-----------|--------|
 | API framework | FastAPI | Async, Pydantic validation, OpenAPI docs built-in |
+| Frontend UI | Streamlit | User-friendly web interface for document generation |
 | LLM | Groq (llama3-8b-8192) | Free tier, fast inference |
 | Document generation | python-docx | Full .docx control, no external services |
 | Memory | File-backed JSON | Zero-dependency, session-scoped |
@@ -181,6 +198,7 @@ This request is deliberately vague – the agent will state its assumptions (boa
 ```
 docx-gen-ai-agent/
 ├── main.py                  # FastAPI app, routes, request/response models
+├── streamlit_app.py         # Streamlit frontend UI
 ├── requirements.txt         # Python dependencies
 ├── README.md                # This file
 ├── .env                     # API keys (not in git)
@@ -195,5 +213,4 @@ docx-gen-ai-agent/
 ├── outputs/                 # Generated .docx files
 ├── memory_store/            # Session message history (JSON files)
 └── env/                     # Python virtual environment (not in git)
-```
 ```
